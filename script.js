@@ -19,7 +19,15 @@ class MusicPlayer {
                 artist: "Los Mesoneros",
                 audioFile: "songs/CumpleañosLosMesoneros.mp3",
                 lyricsFile: "songs/CumpleañosLosMesoneros.lrc",
-                cover: "songs/Cumpleaños-cover.jpg",
+                cover: "songs/Cumpleaños-cover.jpg",            
+            },
+            {
+                id: 2,
+                title: "Cuéntame",
+                artist: "Pedro Suárez Vértiz",
+                audioFile: "songs/CuentamePedroSuarezVertiz.mp3",
+                lyricsFile: "songs/CuentamePedroSuarezVertiz.lrc",
+                cover: "songs/Cuentame-cover.jpg",
             }
             // Puedes agregar más canciones aquí
         ];
