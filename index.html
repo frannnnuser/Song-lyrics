@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player - Letras Sincronizadas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="player-container">
+            <div class="song-info">
+                <img src="https://via.placeholder.com/250x250/ff6b6b/ffffff?text=🎵" alt="Album Cover" class="album-cover" id="albumCover">
+                <h2 class="song-title" id="songTitle">Selecciona una canción</h2>
+                <p class="artist-name" id="artistName">Artista</p>
+            </div>
+
+            <div class="audio-player">
+                <audio id="audioPlayer" controls>
+                    Tu navegador no soporta el reproductor de audio.
+                </audio>
+            </div>
+
+            <div class="playlist">
+                <h3>Playlist</h3>
+                <div class="song-list" id="songList">
+                    <!-- Las canciones se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <div class="lyrics-container">
+            <div class="lyrics-display" id="lyricsDisplay">
+                <div class="lyrics-placeholder">
+                    <p>🎵 Selecciona una canción para ver las letras</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
