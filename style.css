@@ -11,9 +11,97 @@ body {
     color: #333;
 }
 
+/* Header con menú y buscador */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px 15px;
+    font-size: 1rem;
+    width: 300px;
+    color: #333;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    transform: scale(1.05);
+}
+
+.header-spacer {
+    width: 50px; /* Mismo ancho que el botón de menú para centrar el buscador */
+}
+
 .container {
     display: flex;
-    min-height: 100vh;
+    min-height: calc(100vh - 90px); /* Ajustado para el header */
     padding: 20px;
     gap: 20px;
 }
@@ -26,6 +114,38 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     max-width: 400px;
+    position: relative; /* Para posicionar el botón de regresar */
+}
+
+/* Estilos para el botón de canción anterior (antes era back-button) */
+.prev-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    opacity: 0;
+    transform: translateX(-30px);
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev-button:hover {
+    transform: translateX(-30px) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
 }
 
 .song-info {
@@ -33,11 +153,16 @@ body {
     margin-bottom: 30px;
 }
 
+.song-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
 .album-cover {
     width: 250px;
     height: 250px;
     border-radius: 15px;
-    margin-bottom: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
@@ -46,19 +171,11 @@ body {
     transform: scale(1.05);
 }
 
-.song-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.artist-name {
-    color: #666;
-    font-size: 1.1rem;
-}
-
 .audio-player {
     margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
 }
 
 #audioPlayer {
@@ -127,11 +244,22 @@ body {
     border-radius: 8px;
     transition: all 0.4s ease;
     cursor: pointer;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #667eea; /* Fallback para navegadores que no soportan text gradients */
 }
 
 .lyric-line:hover {
     background: rgba(102, 126, 234, 0.1);
     padding-left: 15px;
+    /* Restaurar el degradado del texto en hover */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    background-clip: text;
 }
 
 .lyric-line.active {
@@ -141,6 +269,10 @@ body {
     font-weight: bold;
     transform: scale(1.02);
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    /* Restaurar color blanco para la línea activa */
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: white;
+    background-clip: initial;
 }
 
 .lyric-line.passed {
@@ -165,9 +297,20 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-input {
+        width: 250px;
+    }
+    
     .container {
         flex-direction: column;
         padding: 10px;
+        min-height: calc(100vh - 140px); /* Ajustado para header móvil */
     }
     
     .player-container {
@@ -177,5 +320,14 @@ body {
     .album-cover {
         width: 200px;
         height: 200px;
+    }
+    
+    .prev-button {
+        top: 15px;
+        left: 15px;
+        padding: 10px;
+        font-size: 1rem;
+        width: 40px;
+        height: 40px;
     }
 }

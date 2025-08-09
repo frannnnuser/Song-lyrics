@@ -7,15 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header con menú y buscador -->
+    <header class="header">
+        <button class="menu-button" id="menuButton" onclick="goToHome()">
+            🏠
+        </button>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar canción o artista..." class="search-input">
+            <button class="search-button" id="searchButton">🔍</button>
+        </div>
+        
+        <div class="header-spacer"></div> <!-- Para balancear el layout -->
+    </header>
+
     <div class="container">
         <div class="player-container">
+            <!-- Botón de canción anterior (solo flecha, oculto inicialmente) -->
+            <button class="prev-button" id="prevButton" onclick="playPreviousSong()" style="display: none;">
+                ←
+            </button>
+
             <div class="song-info">
-                <img src="https://via.placeholder.com/250x250/ff6b6b/ffffff?text=🎵" alt="Album Cover" class="album-cover" id="albumCover">
-                <h2 class="song-title" id="songTitle">Selecciona una canción</h2>
-                <p class="artist-name" id="artistName">Artista</p>
+                <h2 class="song-title" id="songTitle">Seleccionar una canción</h2>
+                <img src="image/menu.jpg" alt="Album Cover" class="album-cover" id="albumCover">
             </div>
 
-            <div class="audio-player">
+            <!-- Reproductor de audio (oculto inicialmente) -->
+            <div class="audio-player" id="audioPlayerContainer" style="display: none;">
                 <audio id="audioPlayer" controls>
                     Tu navegador no soporta el reproductor de audio.
                 </audio>
